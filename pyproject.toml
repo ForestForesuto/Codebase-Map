@@ -17,6 +17,8 @@ authors = [
 [project.scripts]
 cv = "src.main:main"
 
+dependencies = ["pathspec"]
+
 [project.optional-dependencies]
 dev = [
     "ruff>=0.4.0",
