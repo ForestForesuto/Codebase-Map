@@ -3,6 +3,7 @@
 from argparse import ArgumentParser, Namespace
 from pathlib import Path
 
+from .git_files import default_gitignore, is_gitignore_exist, read_gitignore
 from .restrictions import is_restricted_path
 
 
@@ -27,3 +28,10 @@ def main() -> None:
 
     if is_restricted_path(work_dir):
         parser.error(f"Restricted path: {work_dir}\nProvide a valid codebase directory.")
+
+    if is_gitignore_exist(work_dir) and not args.nogitignore:
+        excluded = read_gitignore(work_dir)
+    else:
+        excluded = default_gitignore()
+
+    print(excluded)
