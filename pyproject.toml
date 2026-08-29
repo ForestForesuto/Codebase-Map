@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=68.0.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "codebase-map"
+version = "0.1.0"
+description = "A CLI tool that visualizes the file structure of any codebase."
+readme = "README.md"
+license = {file = "LICENSE"}
+requires-python = ">=3.11"
+authors = [
+    {name = "ForestForesuto"}
+]
+
+
+[project.scripts]
+cv = "src.main:main"
+
+[project.optional-dependencies]
+dev = [
+    "ruff>=0.4.0",
+    "pip-tools>=7.0.0",
+    "uv>=0.5.0",
+]
+
+[tool.ruff]
+line-length = 120
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "N", "UP", "B", "C4", "SIM", "T20"]
+ignore = ["T201", "T203"]
+
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"

@@ -1,2 +1,2 @@
-# Codebase-Visualizer
+# Codebase-Map
 A CLI tool that visualizes the file structure of any codebase.
