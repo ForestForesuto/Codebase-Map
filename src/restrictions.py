@@ -6,8 +6,8 @@ from pathlib import Path
 def is_restricted_path(path: Path) -> bool:
     """Check if the given path is a restricted path.
 
-    A path is considered a restricted path if it's 
-    the home directory itself, the root directory, 
+    A path is considered a restricted path if it's
+    the home directory itself, the root directory,
     a direct child of the home directory, or any file
     regardless of location.
 
