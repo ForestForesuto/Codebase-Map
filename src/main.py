@@ -3,6 +3,8 @@
 from argparse import ArgumentParser, Namespace
 from pathlib import Path
 
+from .restrictions import is_restricted_path
+
 
 def main() -> None:
     """Parse command-line arguments and outputs the codebase tree structure."""
@@ -22,4 +24,6 @@ def main() -> None:
 
     args: Namespace = parser.parse_args()
     work_dir = args.path
-    print(work_dir)
+
+    if is_restricted_path(work_dir):
+        parser.error(f"Restricted path: {work_dir}\nProvide a valid codebase directory.")
