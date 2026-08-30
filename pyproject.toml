@@ -3,21 +3,31 @@ requires = ["setuptools>=68.0.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "codebase-map"
-version = "0.1.0"
+name = "codebase-gitmap"
+version = "0.1.1"
 description = "A CLI tool that visualizes the file structure of any codebase."
 readme = "README.md"
-license = {file = "LICENSE"}
+license = "MIT"
+license-files = ["LICENSE"]
 requires-python = ">=3.11"
 authors = [
     {name = "ForestForesuto"}
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3.11",
 ]
 
 
 dependencies = ["pathspec"]
 
 [project.scripts]
-cv = "codebase_map.main:main"
+cv = "codebase_gitmap.main:main"
+
+[project.urls]
+Repository = "https://github.com/ForestForesuto/Codebase-Map"
 
 [project.optional-dependencies]
 dev = [
