@@ -38,7 +38,7 @@ def _is_hidden(root_path: str, path: str) -> bool:
 
     return hidden
 
-def tree_search(path: Path, exclusions: PathSpec[GitIgnoreBasicPattern]) -> list[Path]:
+def tree_search(path: Path, exclusions: PathSpec[GitIgnoreBasicPattern], allow_hiddens: bool) -> list[Path]:
     """Search a directory and return valid paths.
 
     Returns paths relative to the given directory that are not excluded
@@ -64,14 +64,14 @@ def tree_search(path: Path, exclusions: PathSpec[GitIgnoreBasicPattern]) -> list
             d for d in dirs
             if (not exclusions.match_file(
                 (relative_root + '/' + d if relative_root else d) + '/'
-            ) and not _is_hidden(root, d))
+            ) and (allow_hiddens or not _is_hidden(root, d)))
         ]
 
         files[:] = [
             f for f in files
             if (not exclusions.match_file(
                 relative_root + '/' + f if relative_root else f
-            ) and not _is_hidden(root, f))
+            ) and (allow_hiddens or not _is_hidden(root, f)))
         ]
 
         for d in dirs:

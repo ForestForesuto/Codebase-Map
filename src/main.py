@@ -18,15 +18,20 @@ def main() -> None:
     cast(io.TextIOWrapper, sys.stdout).reconfigure(encoding='utf-8')
     parser = ArgumentParser()
 
-    parser.usage = 'Use to see the tree file structure of your codebase'
+    parser.usage = 'Use to see the tree file structure of your codebase.'
 
     parser.add_argument(
-        'path', help='Codebase path you want to see tree structure',
+        'path', help='Codebase path you want to see tree structure.',
         type=Path, default=Path.cwd(), nargs='?'
     )
     parser.add_argument(
         '-ngi', '--nogitignore',
-        help='Ignores the .gitignore in a codebase and uses default exclusions',
+        help='Ignores the .gitignore in a codebase and uses default exclusions.',
+        action='store_true'
+    )
+    parser.add_argument(
+        '-ah', '--allowhiddens',
+        help='Allows hidden files/folders in a codebase to be seen in the output.',
         action='store_true'
     )
 
@@ -41,5 +46,5 @@ def main() -> None:
     else:
         excluded = default_gitignore()
 
-    found_paths = tree_search(work_dir, excluded)
+    found_paths = tree_search(work_dir, excluded, args.allowhiddens)
     render_tree(found_paths, work_dir)
