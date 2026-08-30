@@ -40,3 +40,11 @@ gitignore_patterns = [
     # 8. Github items
     '.git/'
 ]
+
+symbols = {
+    'branch': '├── ',
+    'empty': '',
+    'indent': '    ',
+    'last_branch': '└── ',
+    'vertical': '│   ',
+}

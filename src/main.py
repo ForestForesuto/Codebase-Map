@@ -1,15 +1,21 @@
 """CLI tool to display a tree file structure of a codebase."""
 
+import io
+import sys
 from argparse import ArgumentParser, Namespace
 from pathlib import Path
+from typing import cast
 
 from .git_files import default_gitignore, is_gitignore_exist, read_gitignore
+from .render import render_tree
 from .restrictions import is_restricted_path
 from .tree import tree_search
 
 
 def main() -> None:
     """Parse command-line arguments and outputs the codebase tree structure."""
+
+    cast(io.TextIOWrapper, sys.stdout).reconfigure(encoding='utf-8')
     parser = ArgumentParser()
 
     parser.usage = 'Use to see the tree file structure of your codebase'
@@ -36,5 +42,4 @@ def main() -> None:
         excluded = default_gitignore()
 
     found_paths = tree_search(work_dir, excluded)
-
-    print(found_paths)
+    render_tree(found_paths, work_dir)
