@@ -14,10 +14,10 @@ authors = [
 ]
 
 
-[project.scripts]
-cv = "src.main:main"
-
 dependencies = ["pathspec"]
+
+[project.scripts]
+cv = "codebase_map.main:main"
 
 [project.optional-dependencies]
 dev = [
