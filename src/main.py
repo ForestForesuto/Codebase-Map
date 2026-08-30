@@ -5,6 +5,7 @@ from pathlib import Path
 
 from .git_files import default_gitignore, is_gitignore_exist, read_gitignore
 from .restrictions import is_restricted_path
+from .tree import tree_search
 
 
 def main() -> None:
@@ -34,4 +35,6 @@ def main() -> None:
     else:
         excluded = default_gitignore()
 
-    print(excluded)
+    found_paths = tree_search(work_dir, excluded)
+
+    print(found_paths)
